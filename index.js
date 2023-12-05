@@ -200,6 +200,8 @@ RedirectableRequest.prototype.setTimeout = function (msecs, callback) {
     }
     if (!self.socket) {
       self._currentRequest.removeListener("socket", startTimer);
+    } else {
+      self.socket.removeListener("timeout", self.socket.destroy);
     }
   }
 
